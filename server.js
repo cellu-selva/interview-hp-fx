@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 
 app.use('/contact', route.contact);
+app.use('/contact-group', route.contactGroup);
 // Start server
 app.listen(constant.applicationPort, () => {
   console.log("Server started at Port : ", constant.applicationPort)

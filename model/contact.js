@@ -43,10 +43,16 @@ const ContactSchema = new Schema({
 });
 
 ContactSchema.index({ name: 1 }, { unique: true });
+// ContactSchema.index({
+//   'name': 'text',
+//   'emails.email': 'text',
+//   'emails.tag': 'text',
+//   'phones.phone_number': 'text',  
+//   'phones.tag': 'text',  
+// });
+
 ContactSchema.index({
-  name: "text",
-  emails: "text",
-  phones: "text",  
-});
+  '$**': 'text'
+})
 
 mongoose.model('Contact', ContactSchema);

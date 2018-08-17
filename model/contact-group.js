@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
+const idValidator = require('mongoose-id-validator');
+
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
+
 const ContactGroupSchema = new Schema({
   name: {
     type: String,
@@ -23,4 +26,6 @@ const ContactGroupSchema = new Schema({
     default: false
   }
 });
+ContactGroupSchema.plugin(idValidator);
+ContactGroupSchema.index({ name: 1 }, { unique: true });
 mongoose.model('ContactGroup', ContactGroupSchema);

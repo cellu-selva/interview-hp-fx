@@ -6,11 +6,12 @@ module.exports = (function () {
 
   router.get('/:id', contactController.getContactById )
         .put('/:id', contactController.updateContactById)
-    .delete('/:id', contactController.deleteContactById);
+        .delete('/:id', contactController.deleteContactById);
 
   router.post('/', contactController.createContact)
-    .get('/all', contactController.getAllContact);
+        .get('/', contactController.getAllContact);
 
+  router.get('/search/:searchContent', contactController.search);
   return router;
 
 })();
