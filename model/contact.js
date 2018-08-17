@@ -7,14 +7,14 @@ const ContactSchema = new Schema({
     required: true
   },
   emails: [ {
-    emails: {
+    email: {
       type: String,
       required: true,
       match: [/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'Please enter a valid email']
     },
     tag: {
       type: String,
-      enum: ['office', 'work']
+      enum: ['personal', 'work']
     }
   }],
   phone: [{
@@ -25,7 +25,7 @@ const ContactSchema = new Schema({
     },
     tag: {
       type: String,
-      enum: ['office', 'work']
+      enum: ['personal', 'work']
     }
   }],
   created_at: {
@@ -42,6 +42,7 @@ const ContactSchema = new Schema({
   }
 });
 
+ContactSchema.index({ name: 1 }, { unique: true });
 ContactSchema.index({
   name: "text",
   emails: "text",

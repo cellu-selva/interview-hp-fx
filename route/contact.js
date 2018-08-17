@@ -1,5 +1,16 @@
-const contact = {};
+'use strict';
+const express = require('express');
+const contactController = require('./../controller/contact');
+module.exports = (function () {
+  var router = express.Router();
 
-// Yet to code
+  router.get('/:id', contactController.getContactById )
+        .put('/:id', contactController.updateContactById)
+    .delete('/:id', contactController.deleteContactById);
 
-module.exports = contact;
+  router.post('/', contactController.createContact)
+    .get('/all', contactController.getAllContact);
+
+  return router;
+
+})();
