@@ -3,6 +3,7 @@ Contact = mongoose.model('Contact');
 
 module.exports = {
   getAllContact: function (req, res) {
+    // will list the deleted contacts also i did it intentionally
     Contact.find({}).exec((err, results) => {
       if (err) {
         console.log('Error getting all contact ');
@@ -15,6 +16,7 @@ module.exports = {
     });
   },
   getContactById: function(req, res) {
+    // will list the deleted contacts also i did it intentionally
     Contact.findById({
       _id: req.params.id
     }).exec((err, results) => {
@@ -78,9 +80,8 @@ module.exports = {
   },
   search: function(req, res) {
     console.log(req.params.searchContent);
-    Contact.find(
-      { $text: { $search: req.params.searchContent } }
-    )
+    const regexSearch = new RegExp(req.params.searchContent,"i");
+    Contact.find({ $text: { $search: req.params.searchContent } })
       .exec(function (err, results) {
         if (err) {
           console.log('Error searching for :: content :: ', req.params.searchContent);

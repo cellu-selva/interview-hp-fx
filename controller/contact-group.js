@@ -3,6 +3,7 @@ ContactGroup = mongoose.model('ContactGroup');
 
 module.exports = {
   getAllContactGroup: function (req, res, next) {
+    // will list the deleted contact group also. i did it intentionally
     ContactGroup.find({}).populate('contacts').exec((err, results) => {
       if (err) {
         console.log('Error getting all contactGroup ');
@@ -15,6 +16,7 @@ module.exports = {
     });
   },
   getContactGroupById: function (req, res, next) {
+    // will list the deleted contact group also. i did it intentionally
     ContactGroup.findById({
       _id: req.params.id
     }).exec((err, results) => {
