@@ -11,6 +11,8 @@ const constant = require('./constant/constant');
 const db = require('./connection/db');
 const route = require('./route/index');
 
+// Models 
+require('./model/index');
 // Middleware accessing all the incoming request
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
